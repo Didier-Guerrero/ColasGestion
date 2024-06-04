@@ -11,5 +11,4 @@ def send_message_to_queue(message):
     
     connection.close()
 
-# Ejemplo de uso
 send_message_to_queue('Funciona el sistema de colas!')

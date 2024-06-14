@@ -14,10 +14,10 @@ def send_email(body):
     with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
         server.login(sender_email, password)
         server.sendmail(sender_email, receiver_email, msg.as_string())
-        print(f"Email sent to {receiver_email}")
+        print(f"Mail enviado a {receiver_email}")
 
 def callback(ch, method, properties, body):
-    print(f" [x] Received {body}")
+    print(f"Received {body}")
     send_email(body.decode())
 
 def start_consuming():
@@ -26,7 +26,10 @@ def start_consuming():
     channel = connection.channel()
     channel.queue_declare(queue='email_queue')
     channel.basic_consume(queue='email_queue', on_message_callback=callback, auto_ack=True)
-    print(' [*] Esperando mensaje, para salir CTRL+C')
+    print('Esperando mensaje, para salir CTRL+C')
     channel.start_consuming()
 
 start_consuming()
+
+
+#anadir objetos clases, un caso de uso real
